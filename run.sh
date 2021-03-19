@@ -70,7 +70,7 @@ cd $SCRIPT_DIR
 # Tasks (ex: `./run.sh test`)
 case $1 in
   ssh)
-    ssh -t -i ~/.ssh/vps-alexpds alexpds@vps1.hostingsoftag.com "cd node-cpanel; exec \$SHELL --login"
+    ssh -i ~/.ssh/vps-alexpds alexpds@vps1.hostingsoftag.com
     ;;
 
   d|dev)

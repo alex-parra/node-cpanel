@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  res.status(200).json({ msg: 'Hello World' });
+  res.status(200).json({ msg: `Hello World ${process.env.NODE_ENV}` });
 });
 
 app.listen(4549, () => {

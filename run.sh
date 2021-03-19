@@ -2,6 +2,7 @@
 
 # On mac requires coreutils: `brew install coreutils`
 SCRIPT_DIR=$(dirname $(realpath "$0"))
+APP_NAME=node-cpanel
 ENV_DEFAULTS=$SCRIPT_DIR/.env.defaults
 ENV_LOCAL=$SCRIPT_DIR/.env
 
@@ -68,21 +69,35 @@ cd $SCRIPT_DIR
 
 # Tasks (ex: `./run.sh test`)
 case $1 in
+  ssh)
+    ssh -t -i ~/.ssh/vps-alexpds alexpds@vps1.hostingsoftag.com "cd node-cpanel; exec \$SHELL --login"
+    ;;
+
   d|dev)
-    npx nodemon ./src/server.js
+    ./node_modules/.bin/nodemon ./src/server.js
     ;;
 
   prod)
-    npx pm2 delete pm2.config.js
-    npx pm2 start pm2.config.js
+    ./node_modules/.bin/pm2 delete pm2.config.js
+    ./node_modules/.bin/pm2 start pm2.config.js
     ;;
 
   prod.stop)
-    npx pm2 stop pm2.config.js
+    ./node_modules/.bin/pm2 stop pm2.config.js
     ;;
 
   pm2)
-    npx pm2 "${@:2}"
+    ./node_modules/.bin/pm2 "${@:2}"
+    ;;
+
+  runcheck)
+    ./node_modules/.bin/pm2 l | grep $APP_NAME > /dev/null
+    if [ $? -eq 0 ]; then
+      echo "$APP_NAME is running."; # >/dev/null 2>&1
+    else
+      echo "$APP_NAME is NOT running. Restarting..."
+      ./run.sh prod
+    fi
     ;;
 
   *)

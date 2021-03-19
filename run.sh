@@ -90,17 +90,6 @@ case $1 in
     ./node_modules/.bin/pm2 "${@:2}"
     ;;
 
-  runcheck)
-    # ./node_modules/.bin/pm2 l | grep $APP_NAME > /dev/null
-    ./node_modules/.bin/pm2 describe $APP_NAME > /dev/null
-    if [ $? -eq 0 ]; then
-      echo "$APP_NAME is running."; # >/dev/null 2>&1
-    else
-      echo "$APP_NAME is NOT running. Restarting..."
-      ./run.sh prod
-    fi
-    ;;
-
   *)
     abort "Unknow task: ${1:-blank}"
     ;;

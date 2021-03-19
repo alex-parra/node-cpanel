@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
+const config = require('./config');
 
 app.get('/', (req, res) => {
   res.status(200).json({ msg: `Hello World ${process.env.NODE_ENV}` });
 });
 
-app.listen(4549, () => {
-  console.log('Server listening on port 4549');
+app.listen(config.port, () => {
+  console.log(`Server listening on port ${config.port}`);
 });

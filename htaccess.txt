@@ -1,0 +1,5 @@
+DirectoryIndex disabled
+
+RewriteEngine On
+RewriteRule ^(.*)$ http://127.0.0.1:REPLACE_WITH_PORT/$1 [P,L]
+RewriteRule ^$ http://127.0.0.1:REPLACE_WITH_PORT/ [P,L]

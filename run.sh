@@ -77,19 +77,6 @@ case $1 in
     ./node_modules/.bin/nodemon ./src/server.js
     ;;
 
-  prod)
-    ./node_modules/.bin/pm2 delete pm2.config.js
-    ./node_modules/.bin/pm2 start pm2.config.js
-    ;;
-
-  prod.stop)
-    ./node_modules/.bin/pm2 stop pm2.config.js
-    ;;
-
-  pm2)
-    ./node_modules/.bin/pm2 "${@:2}"
-    ;;
-
   *)
     abort "Unknow task: ${1:-blank}"
     ;;

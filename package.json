@@ -7,7 +7,7 @@
     "dev": "pm2 start pm2-dev.config.js",
     "dev.stop": "pm2 stop pm2-dev.config.js",
     "prod": "pm2 start pm2-prod.config.js",
-    "prod.stop": "pm2 start pm2-prod.config.js",
+    "prod.stop": "pm2 stop pm2-prod.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

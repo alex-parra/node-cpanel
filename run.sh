@@ -91,7 +91,8 @@ case $1 in
     ;;
 
   runcheck)
-    ./node_modules/.bin/pm2 l | grep $APP_NAME > /dev/null
+    # ./node_modules/.bin/pm2 l | grep $APP_NAME > /dev/null
+    ./node_modules/.bin/pm2 describe $APP_NAME > /dev/null
     if [ $? -eq 0 ]; then
       echo "$APP_NAME is running."; # >/dev/null 2>&1
     else
